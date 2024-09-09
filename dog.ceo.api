@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Dog CEO API
+  description: API to fetch random dog images and dog images by breed.
+  version: 1.0.0
+servers:
+  - url: https://dog.ceo/api
+    description: Dog API server
+paths:
+  /breeds/image/random:
+    get:
+      operationId: getRandomDogImage
+      summary: Get a random dog image
+      description: Retrieves a random image of a dog.
+      responses:
+        '200':
+          description: A JSON object containing the URL of a random dog image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: URL of the random dog image
+                  status:
+                    type: string
+                    description: The status of the API request
+
+  /breed/{breed}/images:
+    get:
+      operationId: getDogImagesByBreed
+      summary: Get dog images by breed
+      description: Fetches a list of images for a specific dog breed.
+      parameters:
+        - name: breed
+          in: path
+          required: true
+          description: The breed of the dog (e.g., bulldog, beagle, retriever)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A JSON array of dog image URLs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: array
+                    items:
+                      type: string
+                      description: URL of the dog image
+                  status:
+                    type: string
+                    description: The status of the API request
