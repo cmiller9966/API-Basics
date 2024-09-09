@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Cat Facts API
+  description: A simple API that returns random cat facts.
+  version: 1.0.0
+servers:
+  - url: https://catfact.ninja
+    description: Public API for random cat facts
+paths:
+  /fact:
+    get:
+      operationId: getRandomCatFact
+      summary: Get a random cat fact
+      description: Retrieves a random fact about cats.
+      responses:
+        '200':
+          description: A JSON object containing a random cat fact
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fact:
+                    type: string
+                    description: A random cat fact
+                  length:
+                    type: integer
+                    description: The length of the fact in characters
